@@ -1,0 +1,481 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#173d32">
+  <meta name="description" content="NutriWise AI helps adults build balanced, sustainable eating habits with personalized meal-planning support.">
+  <title>NutriWise AI — Small Steps. Better Habits.</title>
+  <style>
+    :root {
+      --green: #173d32;
+      --green2: #285746;
+      --cream: #f7f6ef;
+      --lime: #d9edb9;
+      --ink: #1d2d25;
+      --muted: #66746a;
+      --white: #fff;
+      --line: #e4e8dd;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    button, select, input { font: inherit; }
+
+    .wrap {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+
+    header {
+      background: var(--cream);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -.7px;
+    }
+
+    .logo {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: var(--green);
+      color: var(--lime);
+      font-size: 23px;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--green);
+    }
+
+    .hero {
+      background: var(--green);
+      color: white;
+      padding: 64px 0 58px;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(217,237,185,.14);
+      color: var(--lime);
+      border: 1px solid rgba(217,237,185,.3);
+      border-radius: 30px;
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: .5px;
+    }
+
+    h1 {
+      font-size: clamp(39px, 6vw, 66px);
+      line-height: 1.06;
+      letter-spacing: -2.5px;
+      margin: 20px 0;
+    }
+
+    .hero p {
+      color: #dbe7de;
+      max-width: 510px;
+      font-size: 17px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+      border-radius: 14px;
+      background: var(--lime);
+      color: var(--green);
+      border: 0;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+
+    .button:hover { filter: brightness(.96); }
+
+    .hero-note {
+      font-size: 12px !important;
+      margin-top: 16px;
+    }
+
+    .food-card {
+      min-height: 320px;
+      border-radius: 28px;
+      background: #e8e9d8;
+      padding: 25px;
+      color: var(--green);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .food-art {
+      font-size: clamp(75px, 12vw, 125px);
+      text-align: center;
+      padding: 20px 0;
+      filter: drop-shadow(0 12px 10px #173d3220);
+    }
+
+    .food-caption {
+      background: white;
+      border-radius: 16px;
+      padding: 14px;
+      font-weight: 750;
+      font-size: 14px;
+    }
+
+    section { padding: 58px 0; }
+
+    .section-heading {
+      max-width: 650px;
+      margin: 0 auto 30px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4vw, 39px);
+      line-height: 1.2;
+      letter-spacing: -1px;
+      margin: 0 0 12px;
+    }
+
+    .muted { color: var(--muted); }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .feature {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 23px;
+    }
+
+    .feature-icon { font-size: 28px; }
+
+    .feature h3 { margin: 12px 0 7px; }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .planner {
+      background: #edf0e4;
+    }
+
+    .planner-card {
+      max-width: 680px;
+      margin: auto;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: clamp(20px, 5vw, 36px);
+      box-shadow: 0 12px 40px #173d320a;
+    }
+
+    .field { margin: 20px 0; }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 750;
+      margin-bottom: 8px;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d7dfd3;
+      border-radius: 12px;
+      background: white;
+      color: var(--ink);
+    }
+
+    select:focus, input:focus {
+      outline: 2px solid #7ba78b;
+      outline-offset: 2px;
+    }
+
+    .planner .button { width: 100%; }
+
+    .result {
+      display: none;
+      margin-top: 20px;
+      padding: 18px;
+      border-radius: 14px;
+      background: #edf5e6;
+      border: 1px solid #d5e6c6;
+    }
+
+    .result h3 { margin-top: 0; }
+
+    .safety {
+      background: var(--green);
+      color: white;
+    }
+
+    .safety p {
+      max-width: 750px;
+      margin: 12px auto;
+      color: #dbe7de;
+    }
+
+    .safety .section-heading { margin-bottom: 0; }
+
+    footer {
+      padding: 28px 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 700px) {
+      .hero { padding: 44px 0; }
+      .hero-grid { grid-template-columns: 1fr; gap: 25px; }
+      .food-card { min-height: 230px; }
+      .food-art { padding: 8px 0; font-size: 85px; }
+      .features { grid-template-columns: 1fr; }
+      section { padding: 44px 0; }
+      h1 { letter-spacing: -1.6px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#" aria-label="NutriWise AI home">
+        <span class="logo">✳</span>
+        <span>NutriWise <span style="color:#56836a">AI</span></span>
+      </a>
+      <a class="nav-link" href="#planner">Explore meal planning ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">A GENTLER APPROACH TO HEALTHY EATING</span>
+          <h1>Small steps.<br>Better habits.</h1>
+          <p>
+            Discover a more balanced way to eat with meal-planning
+            support shaped around your food preferences, lifestyle,
+            and budget.
+          </p>
+          <a class="button" href="#planner">Start your meal planner →</a>
+          <p class="hero-note">
+            No crash diets. No shame. Just practical ideas for everyday meals.
+          </p>
+        </div>
+
+        <div class="food-card">
+          <div>
+            <strong>YOUR EVERYDAY WELLNESS</strong>
+            <p style="margin:5px 0;color:#526b58">
+              Balanced choices, one meal at a time.
+            </p>
+          </div>
+          <div class="food-art" aria-label="Healthy food illustration">🥗 🥑</div>
+          <div class="food-caption">
+            🌱 Flexible meals · Real-life routines
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section>
+      <div class="wrap">
+        <div class="section-heading">
+          <h2>Healthy habits should fit your life.</h2>
+          <p class="muted">
+            Helpful planning tools designed around your routine,
+            not a one-size-fits-all diet.
+          </p>
+        </div>
+
+        <div class="features">
+          <article class="feature">
+            <div class="feature-icon">🥘</div>
+            <h3>Food that feels familiar</h3>
+            <p>Explore meal ideas based on your preferences,
+              including familiar home-cooked options.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">🗓️</div>
+            <h3>Plan your week</h3>
+            <p>Organize meal ideas around your schedule and
+              make grocery shopping easier.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">🌿</div>
+            <h3>Progress without pressure</h3>
+            <p>Focus on consistency and sustainable habits
+              rather than quick-fix promises.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="planner" id="planner">
+      <div class="wrap">
+        <div class="section-heading">
+          <h2>Let's understand your preferences.</h2>
+          <p class="muted">
+            Try this simple preview of our future meal-planning experience.
+          </p>
+        </div>
+
+        <form class="planner-card" id="plannerForm">
+          <div class="field">
+            <label for="goal">What's your main goal?</label>
+            <select id="goal" required>
+              <option value="">Choose an option</option>
+              <option>Build balanced eating habits</option>
+              <option>Work toward gradual weight management</option>
+              <option>Plan regular, convenient meals</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="food">Your food preference</label>
+            <select id="food" required>
+              <option value="">Choose an option</option>
+              <option>Vegetarian</option>
+              <option>Eggetarian</option>
+              <option>Non-vegetarian</option>
+              <option>Vegan</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="budget">Preferred daily food budget</label>
+            <select id="budget" required>
+              <option value="">Choose an option</option>
+              <option>Budget-friendly</option>
+              <option>Moderate</option>
+              <option>Flexible</option>
+            </select>
+          </div>
+
+          <button class="button" type="submit">Preview my preferences →</button>
+
+          <div class="result" id="result" role="status" aria-live="polite">
+            <h3>Your preferences are ready 🌱</h3>
+            <p id="resultText"></p>
+            <p><strong>Coming next:</strong> personalized meal suggestions
+              and a weekly grocery list.</p>
+            <p class="muted" style="font-size:12px">
+              This is a website demo, not an AI-generated diet plan.
+            </p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="safety">
+      <div class="wrap section-heading">
+        <h2>Your well-being comes first.</h2>
+        <p>
+          NutriWise AI is being designed as a meal-planning and
+          healthy-habit support tool. It is not a medical service,
+          and its suggestions cannot replace advice from a qualified
+          healthcare professional or registered dietitian.
+        </p>
+        <p>
+          If you are pregnant, under 18, have a medical condition,
+          or have a history of disordered eating, seek individualized
+          guidance from a qualified professional before pursuing a
+          weight-management plan.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <strong>NutriWise AI 🌿</strong>
+      <span>Thoughtful planning. Sustainable habits.</span>
+      <span>© <span id="year"></span> NutriWise AI</span>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById("plannerForm");
+    const result = document.getElementById("result");
+    const resultText = document.getElementById("resultText");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const goal = document.getElementById("goal").value;
+      const food = document.getElementById("food").value;
+      const budget = document.getElementById("budget").value;
+
+      resultText.textContent =
+        "Goal: " + goal + ". Food preference: " + food +
+        ". Budget: " + budget + ".";
+
+      result.style.display = "block";
+      result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+              </html>
+              
