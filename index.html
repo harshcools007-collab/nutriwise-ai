@@ -453,29 +453,56 @@
     </div>
   </footer>
 
-  <script>
-    const form = document.getElementById("plannerForm");
-    const result = document.getElementById("result");
-    const resultText = document.getElementById("resultText");
+  
+<script>
+  const form = document.getElementById("plannerForm");
+  const result = document.getElementById("result");
+  const resultText = document.getElementById("resultText");
 
-    form.addEventListener("submit", function(event) {
-      event.preventDefault();
+  form.addEventListener("submit", async function(event) {
+    event.preventDefault();
 
-      const goal = document.getElementById("goal").value;
-      const food = document.getElementById("food").value;
-      const budget = document.getElementById("budget").value;
+    const goal = document.getElementById("goal").value;
+    const food = document.getElementById("food").value;
+    const budget = document.getElementById("budget").value;
 
+    result.style.display = "block";
+    resultText.textContent = "Creating your meal plan with AI... Please wait.";
+
+    try {
+      const response = await fetch("/.netlify/functions/generate-plan", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          goal: goal,
+          foodPreference: food,
+          budget: budget
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Unable to generate your meal plan. Please try again.");
+      }
+
+      resultText.textContent = data.plan;
+    } catch (error) {
       resultText.textContent =
-        "Goal: " + goal + ". Food preference: " + food +
-        ". Budget: " + budget + ".";
+        "Sorry, we couldn't generate your meal plan right now. Please try again later.";
+    }
 
-      result.style.display = "block";
-      result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    result.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest"
     });
+  });
 
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-  </script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+  
 </body>
               </html>
               
